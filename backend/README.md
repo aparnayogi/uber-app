@@ -65,3 +65,21 @@ Register a new user in the system.
 - The password is automatically hashed before storage
 - A JWT token is generated and returned upon successful registration
 - The response includes both the authentication token and user details
+
+## API Documentation
+
+### User Endpoints
+
+#### Get User Profile
+- **URL**: `/users/profile`
+- **Method**: `GET`
+- **Auth Required**: Yes
+- **Description**: Get the current user's profile information
+
+#### Logout User
+- **URL**: `/users/logout`
+- **Method**: `POST`
+- **Auth Required**: Yes
+- **Description**: Logout the current user and invalidate their token
+
+For detailed API documentation including request/response formats, please see [API Documentation](./docs/api.md).
