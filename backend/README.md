@@ -82,4 +82,79 @@ Register a new user in the system.
 - **Auth Required**: Yes
 - **Description**: Logout the current user and invalidate their token
 
+## Captain Endpoints
+
+### Captain Registration
+`POST /captains/register`
+
+Register a new captain in the system.
+
+### Request Body
+```json
+{
+    "fullname": {
+        "firstname": "string",  // minimum 3 characters
+        "lastname": "string"    // optional
+    },
+    "email": "string",         // valid email format
+    "password": "string",      // minimum 6 characters
+    "vehicle": {
+        "color": "string",     // minimum 3 characters
+        "plate": "string",     // minimum 3 characters
+        "capacity": "number",  // minimum 1
+        "vehicleType": "string" // must be 'car', 'motorcycle', or 'auto'
+    }
+}
+```
+
+### Example Response
+
+#### Success (201 Created)
+```json
+{
+    "token": "JWT_TOKEN_STRING",
+    "captain": {
+        "fullname": {
+            "firstname": "string",
+            "lastname": "string"
+        },
+        "email": "string",
+        "vehicle": {
+            "color": "string",
+            "plate": "string",
+            "capacity": number,
+            "vehicleType": "string"
+        },
+        "_id": "string"
+    }
+}
+```
+
+#### Error (400 Bad Request)
+```json
+{
+    "errors": [
+        {
+            "msg": "Error message",
+            "param": "field_name",
+            "location": "body"
+        }
+    ]
+}
+```
+
+### Validation Rules
+- Email must be a valid email format
+- First name must be at least 3 characters long
+- Password must be at least 6 characters long
+- Vehicle color must be at least 3 characters long
+- Vehicle plate must be at least 3 characters long
+- Vehicle capacity must be at least 1
+- Vehicle type must be one of: 'car', 'motorcycle', 'auto'
+
+### Notes
+- The password is automatically hashed before storage
+- A JWT token is generated and returned upon successful registration
+- The response includes both the authentication token and captain details
+
 For detailed API documentation including request/response formats, please see [API Documentation](./docs/api.md).
